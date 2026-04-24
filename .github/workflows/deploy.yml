@@ -10,7 +10,7 @@ on:
 jobs:
 
   build:
-    name: Build Stage
+    name: Build Stage main
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +22,7 @@ jobs:
         run: echo "Building application for PRODUCTION environment..."
 
   deploy:
-    name: Deploy Stage
+    name: Deploy Stage main
     runs-on: ubuntu-latest
     needs: build
 
