@@ -3,8 +3,8 @@ name: Branch Based CI/CD
 on:
   push:
     branches:
-      - dev
-      - uat
+      #- dev
+      #- uat
       - main
 
 jobs:
@@ -17,19 +17,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Identify Branch
-        run: echo "Running build for branch ${{ github.ref_name }}"
-
-      - name: Build for DEV
-        if: github.ref_name == 'dev'
-        run: echo "Building application for DEV environment..."
-
-      - name: Build for UAT
-        if: github.ref_name == 'uat'
-        run: echo "Building application for UAT environment..."
-
       - name: Build for PROD
-        if: github.ref_name == 'main'
+        #if: github.ref_name == 'main'
         run: echo "Building application for PRODUCTION environment..."
 
   deploy:
@@ -41,17 +30,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Identify Branch
-        run: echo "Running deploy for branch ${{ github.ref_name }}"
-
-      - name: Deploy for DEV
-        if: github.ref_name == 'dev'
-        run: echo "Deploying to DEV..."
-
-      - name: Deploy for UAT
-        if: github.ref_name == 'uat'
-        run: echo "Deploying to UAT..."
-
       - name: Deploy for PROD
-        if: github.ref_name == 'main'
+        #if: github.ref_name == 'main'
         run: echo "Deploying to PRODUCTION..."
