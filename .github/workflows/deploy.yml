@@ -2,11 +2,6 @@ name: Branch Based CI/CD
 
 on:
   push:
-    branches:
-      #- dev
-      #- uat
-      - main
-
 jobs:
 
   build:
