@@ -4,36 +4,24 @@ on:
   push:
     branches:
       - dev
-      - uat
-      - main
-
 jobs:
 
   build:
-    name: Build Stage
+    name: Build Stage dev
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Identify Branch
-        run: echo "Running build for branch ${{ github.ref_name }}"
-
       - name: Build for DEV
-        if: github.ref_name == 'dev'
-        run: echo "Building application for DEV environment..."
-
-      - name: Build for UAT
-        if: github.ref_name == 'uat'
-        run: echo "Building application for UAT environment..."
-
-      - name: Build for PROD
-        if: github.ref_name == 'main'
-        run: echo "Building application for PRODUCTION environment..."
-
+        run: |
+          echo "=============================="
+          echo "🚀 BUILD STAGE - DEV"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "=============================="
   deploy:
-    name: Deploy Stage
+    name: Deploy Stage DEV
     runs-on: ubuntu-latest
     needs: build
 
@@ -41,17 +29,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Identify Branch
-        run: echo "Running deploy for branch ${{ github.ref_name }}"
-
       - name: Deploy for DEV
-        if: github.ref_name == 'dev'
-        run: echo "Deploying to DEV..."
-
-      - name: Deploy for UAT
-        if: github.ref_name == 'uat'
-        run: echo "Deploying to UAT..."
-
-      - name: Deploy for PROD
-        if: github.ref_name == 'main'
-        run: echo "Deploying to PRODUCTION..."
+        run: |
+          echo "=============================="
+          echo "🚀 DEPLOY STAGE - DEV"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "=============================="
